@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ismail Halimi – Senior Full Stack Engineer (React / .NET Core)</title>
+  <meta name="description" content="Ismail Halimi, senior full stack engineer building React and .NET Core applications for trading and treasury teams at Société Générale.">
+  <meta name="theme-color" content="#0f172a">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Bricolage Grotesque"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            body: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            navy: { 900: '#0f172a', 800: '#1e293b' },
+            royal: '#2563eb',
+            sky: { 400: '#38bdf8', 500: '#3b82f6' },
+            mist: { 50: '#f0f9ff', 100: '#e0f2fe' }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+    h1, h2, h3, .font-display { font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif; }
+    :focus-visible { outline: 3px solid #3b82f6; outline-offset: 3px; border-radius: 6px; }
+    .hero-bg { background: linear-gradient(160deg, #e0f2fe 0%, #f0f9ff 55%, #f0f9ff 100%); }
+    .dark .hero-bg { background: linear-gradient(160deg, #1e293b 0%, #0f172a 60%, #0f172a 100%); }
+    .nav-link[aria-current="true"] { color: #2563eb; }
+    .dark .nav-link[aria-current="true"] { color: #38bdf8; }
+    .nav-link[aria-current="true"]::after { transform: scaleX(1); }
+    .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .bar-fill { width: 0; transition: width .9s cubic-bezier(.2,.8,.2,1); }
+    .timeline-line { background: linear-gradient(to bottom, #2563eb, #38bdf8 60%, transparent); }
+    .tick-up { color: #0284c7; } .dark .tick-up { color: #38bdf8; }
+    .tick-down { color: #e11d48; } .dark .tick-down { color: #fb7185; }
+    .hero-in { opacity: 0; transform: translateY(14px); animation: heroIn .7s cubic-bezier(.2,.8,.2,1) forwards; }
+    @keyframes heroIn { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      .hero-in { animation: none; opacity: 1; transform: none; }
+      .bar-fill, .nav-link::after { transition: none; }
+      * { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-mist-50 text-slate-800 dark:bg-navy-900 dark:text-slate-200 antialiased transition-colors duration-300">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-lg focus:bg-royal focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
+
+  <!-- NAVIGATION -->
+  <header class="sticky top-0 z-50 border-b border-sky-200/60 bg-mist-50/85 backdrop-blur-md dark:border-slate-700/60 dark:bg-navy-900/85">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3" aria-label="Main navigation">
+      <a href="#top" class="flex items-center gap-3 font-display text-lg font-bold text-navy-900 dark:text-white" aria-label="Ismail Halimi, back to top">
+        <span class="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-royal to-sky-400 text-sm font-extrabold text-white">IH</span>
+        <span class="hidden sm:inline">Ismail Halimi</span>
+      </a>
+
+      <ul class="hidden items-center gap-7 text-sm font-medium md:flex">
+        <li><a class="nav-link relative transition-colors hover:text-royal dark:hover:text-sky-400" href="#about">About</a></li>
+        <li><a class="nav-link relative transition-colors hover:text-royal dark:hover:text-sky-400" href="#experience">Experience</a></li>
+        <li><a class="nav-link relative transition-colors hover:text-royal dark:hover:text-sky-400" href="#skills">Skills</a></li>
+        <li><a class="nav-link relative transition-colors hover:text-royal dark:hover:text-sky-400" href="#projects">Projects</a></li>
+        <li><a class="nav-link relative transition-colors hover:text-royal dark:hover:text-sky-400" href="#education">Education</a></li>
+        <li><a class="nav-link relative transition-colors hover:text-royal dark:hover:text-sky-400" href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-sky-200 bg-white text-navy-800 transition hover:border-royal hover:text-royal dark:border-slate-600 dark:bg-navy-800 dark:text-slate-200 dark:hover:border-sky-400 dark:hover:text-sky-400" aria-label="Switch to dark mode">
+          <span id="themeIcon" aria-hidden="true"><i class="fa-solid fa-moon"></i></span>
+        </button>
+        <button id="menuToggle" type="button" class="grid h-10 w-10 place-items-center rounded-full border border-sky-200 bg-white text-navy-800 transition hover:border-royal hover:text-royal md:hidden dark:border-slate-600 dark:bg-navy-800 dark:text-slate-200" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobileMenu" class="hidden border-t border-sky-200/60 bg-mist-50 px-5 pb-4 md:hidden dark:border-slate-700/60 dark:bg-navy-900">
+      <ul class="flex flex-col py-2 text-base font-medium">
+        <li><a class="block rounded-lg px-2 py-3 hover:bg-mist-100 dark:hover:bg-navy-800" href="#about">About</a></li>
+        <li><a class="block rounded-lg px-2 py-3 hover:bg-mist-100 dark:hover:bg-navy-800" href="#experience">Experience</a></li>
+        <li><a class="block rounded-lg px-2 py-3 hover:bg-mist-100 dark:hover:bg-navy-800" href="#skills">Skills</a></li>
+        <li><a class="block rounded-lg px-2 py-3 hover:bg-mist-100 dark:hover:bg-navy-800" href="#projects">Projects</a></li>
+        <li><a class="block rounded-lg px-2 py-3 hover:bg-mist-100 dark:hover:bg-navy-800" href="#education">Education</a></li>
+        <li><a class="block rounded-lg px-2 py-3 hover:bg-mist-100 dark:hover:bg-navy-800" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="top" class="hero-bg relative overflow-hidden">
+      <div class="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 sm:py-24 lg:grid-cols-[1.15fr_1fr]">
+        <div>
+          <p class="hero-in inline-flex items-center gap-2 rounded-full border border-sky-300/70 bg-white/70 px-3 py-1 text-sm font-medium text-royal dark:border-slate-600 dark:bg-navy-800/70 dark:text-sky-400" style="animation-delay:.05s">
+            <span class="h-2 w-2 rounded-full bg-sky-500"></span> Based in Garches, Île-de-France
+          </p>
+          <h1 class="hero-in mt-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-navy-900 sm:text-6xl lg:text-7xl dark:text-white" style="animation-delay:.15s">
+            Ismail Halimi
+          </h1>
+          <p class="hero-in mt-3 font-display text-xl font-semibold text-royal sm:text-2xl dark:text-sky-400" style="animation-delay:.25s">
+            Senior Full Stack Engineer, React and .NET Core
+          </p>
+          <p class="hero-in mt-6 max-w-xl text-lg leading-relaxed text-slate-600 dark:text-slate-300" style="animation-delay:.35s">
+            I build and maintain the web tools that treasurers and traders rely on for pricing, risk and P&amp;L, and I move legacy desktop clients onto clean, tested web applications.
+          </p>
+
+          <div class="hero-in mt-8 flex flex-wrap items-center gap-3" style="animation-delay:.45s">
+            <a href="CV_2026.pdf" download class="group inline-flex items-center gap-2 rounded-xl bg-royal px-6 py-3 font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl">
+              <i class="fa-solid fa-download" aria-hidden="true"></i> Download CV
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-2 rounded-xl border-2 border-royal px-6 py-3 font-semibold text-royal transition hover:-translate-y-0.5 hover:bg-royal hover:text-white dark:border-sky-400 dark:text-sky-400 dark:hover:bg-sky-400 dark:hover:text-navy-900">
+              <i class="fa-regular fa-envelope" aria-hidden="true"></i> Contact me
+            </a>
+          </div>
+
+          <ul class="hero-in mt-8 flex items-center gap-3" style="animation-delay:.55s" aria-label="Social links">
+            <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="grid h-11 w-11 place-items-center rounded-full bg-white text-navy-800 shadow-sm ring-1 ring-sky-200 transition hover:-translate-y-0.5 hover:bg-royal hover:text-white dark:bg-navy-800 dark:text-slate-200 dark:ring-slate-600 dark:hover:bg-sky-400 dark:hover:text-navy-900" aria-label="GitHub"><i class="fa-brands fa-github text-lg" aria-hidden="true"></i></a></li>
+            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="grid h-11 w-11 place-items-center rounded-full bg-white text-navy-800 shadow-sm ring-1 ring-sky-200 transition hover:-translate-y-0.5 hover:bg-royal hover:text-white dark:bg-navy-800 dark:text-slate-200 dark:ring-slate-600 dark:hover:bg-sky-400 dark:hover:text-navy-900" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in text-lg" aria-hidden="true"></i></a></li>
+            <li><a href="mailto:is.halimi@gmail.com" class="grid h-11 w-11 place-items-center rounded-full bg-white text-navy-800 shadow-sm ring-1 ring-sky-200 transition hover:-translate-y-0.5 hover:bg-royal hover:text-white dark:bg-navy-800 dark:text-slate-200 dark:ring-slate-600 dark:hover:bg-sky-400 dark:hover:text-navy-900" aria-label="Email"><i class="fa-solid fa-at text-lg" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+
+        <!-- Live blotter: the one memorable element -->
+        <figure class="hero-in" style="animation-delay:.4s">
+          <div class="overflow-hidden rounded-2xl bg-navy-900 text-slate-200 shadow-2xl shadow-blue-900/30 ring-1 ring-white/10 dark:bg-navy-800">
+            <div class="flex items-center justify-between border-b border-white/10 px-5 py-3">
+              <span class="flex items-center gap-2 font-display font-semibold text-white"><i class="fa-solid fa-chart-line text-sky-400" aria-hidden="true"></i> Blotter</span>
+              <span class="flex items-center gap-2 text-xs text-slate-400"><span class="h-2 w-2 animate-pulse rounded-full bg-sky-400"></span> Live</span>
+            </div>
+            <table class="w-full text-sm">
+              <caption class="sr-only">Illustrative trading blotter with changing P&amp;L values</caption>
+              <thead>
+                <tr class="text-left text-xs text-slate-400">
+                  <th scope="col" class="px-5 py-2 font-medium">Book</th>
+                  <th scope="col" class="px-2 py-2 font-medium">Currency</th>
+                  <th scope="col" class="px-5 py-2 text-right font-medium">P&amp;L (k€)</th>
+                </tr>
+              </thead>
+              <tbody id="blotterBody" class="divide-y divide-white/5"></tbody>
+              <tfoot>
+                <tr class="border-t border-white/10 bg-white/5 font-semibold text-white">
+                  <th scope="row" colspan="2" class="px-5 py-3 text-left">Total</th>
+                  <td id="blotterTotal" class="px-5 py-3 text-right"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <figcaption class="mt-3 text-center text-xs text-slate-500 dark:text-slate-400">Illustrative data, inspired by the kind of screens I build for treasury desks.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="scroll-mt-20 bg-white py-20 dark:bg-navy-900" aria-labelledby="about-title">
+      <div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-[1fr_1.1fr]">
+        <div>
+          <h2 id="about-title" class="font-display text-3xl font-bold text-navy-900 sm:text-4xl dark:text-white">About me</h2>
+          <div class="mt-6 max-w-prose space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+            <p>I'm a full stack engineer with eight years at Société Générale, working on web applications used by teams in Paris, New York, London and Asia. I started on a pricing and risk-indicator platform and now work on STAR, a treasury platform that gathers transactions from many sources into one database.</p>
+            <p>I like code that the next person can read. That means tests that run on every change, refactoring done in small steps, and documentation written while the details are still fresh.</p>
+          </div>
+        </div>
+
+        <ul class="grid gap-4 sm:grid-cols-2">
+          <li class="rounded-2xl bg-mist-50 p-6 ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <i class="fa-solid fa-globe text-2xl text-royal dark:text-sky-400" aria-hidden="true"></i>
+            <h3 class="mt-4 font-display text-lg font-bold text-navy-900 dark:text-white">Used worldwide</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-300">Applications relied on by several teams across Europe, the US and Asia.</p>
+          </li>
+          <li class="rounded-2xl bg-mist-50 p-6 ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <i class="fa-solid fa-laptop-code text-2xl text-royal dark:text-sky-400" aria-hidden="true"></i>
+            <h3 class="mt-4 font-display text-lg font-bold text-navy-900 dark:text-white">Desktop to web</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-300">Several modules migrated from a heavy client to the web application.</p>
+          </li>
+          <li class="rounded-2xl bg-mist-50 p-6 ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <i class="fa-solid fa-vial-circle-check text-2xl text-royal dark:text-sky-400" aria-hidden="true"></i>
+            <h3 class="mt-4 font-display text-lg font-bold text-navy-900 dark:text-white">Quality built in</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-300">Unit and integration tests, automated checks and regular code review.</p>
+          </li>
+          <li class="rounded-2xl bg-mist-50 p-6 ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <i class="fa-solid fa-language text-2xl text-royal dark:text-sky-400" aria-hidden="true"></i>
+            <h3 class="mt-4 font-display text-lg font-bold text-navy-900 dark:text-white">Bilingual</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-300">Fluent in French and English, and used to working with international teams.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="scroll-mt-20 bg-mist-100/60 py-20 dark:bg-navy-800/40" aria-labelledby="exp-title">
+      <div class="mx-auto max-w-4xl px-5">
+        <h2 id="exp-title" class="font-display text-3xl font-bold text-navy-900 sm:text-4xl dark:text-white">Experience</h2>
+
+        <ol class="relative mt-12 space-y-10 pl-8 sm:pl-10">
+          <span class="timeline-line absolute left-[7px] top-2 bottom-0 w-0.5 sm:left-[9px]" aria-hidden="true"></span>
+
+          <li class="relative">
+            <span class="absolute -left-8 top-1.5 h-4 w-4 rounded-full border-4 border-royal bg-white sm:-left-10 sm:h-5 sm:w-5 dark:border-sky-400 dark:bg-navy-900" aria-hidden="true"></span>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:shadow-xl hover:shadow-blue-900/10 sm:p-8 dark:bg-navy-800 dark:ring-slate-700">
+              <header class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <div>
+                  <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">Senior Full Stack Engineer</h3>
+                  <p class="font-medium text-royal dark:text-sky-400">Société Générale</p>
+                </div>
+                <p class="text-sm font-medium text-slate-500 dark:text-slate-400"><time datetime="2022-07">July 2022</time> to present</p>
+              </header>
+              <p class="mt-4 text-slate-600 dark:text-slate-300">STAR is an internal platform used by teams in Paris, New York, London, Asia and other hubs. It collects transactions from several sources (X-One, Border, Cockpit and others) into a single database, so treasurers can see P&amp;L, CBS, Blotter and Sensitivity metrics in one place.</p>
+              <ul class="mt-4 space-y-2 text-slate-700 dark:text-slate-200">
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Built new features and user stories from users' needs.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Handled corrective and evolutive maintenance to keep the system stable and improving.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Provided support and stepped in when incidents occurred.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Migrated several modules from the heavy client to the web application.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Refactored code for readability, maintainability and robustness.</li>
+              </ul>
+              <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">React</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Angular</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">TypeScript</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">.NET Core</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Oracle</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Git</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Jira</li>
+              </ul>
+            </article>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -left-8 top-1.5 h-4 w-4 rounded-full border-4 border-sky-400 bg-white sm:-left-10 sm:h-5 sm:w-5 dark:bg-navy-900" aria-hidden="true"></span>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:shadow-xl hover:shadow-blue-900/10 sm:p-8 dark:bg-navy-800 dark:ring-slate-700">
+              <header class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <div>
+                  <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">Full Stack Engineer</h3>
+                  <p class="font-medium text-royal dark:text-sky-400">Société Générale</p>
+                </div>
+                <p class="text-sm font-medium text-slate-500 dark:text-slate-400"><time datetime="2018-03">March 2018</time> to <time datetime="2022-06">June 2022</time></p>
+              </header>
+              <p class="mt-4 text-slate-600 dark:text-slate-300">Delivered a REST API web application with a simple interface for accessing price calculators and risk indicators based on quantitative financial models, following agile practices: unit tests, integration tests and refactoring on demand.</p>
+              <ul class="mt-4 space-y-2 text-slate-700 dark:text-slate-200">
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Wrote the project documentation.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Set up unit tests and integration tests with TestCafe.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Reviewed code and kept its quality high.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Automated tests and repetitive tasks.</li>
+              </ul>
+              <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">React</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">TypeScript</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">.NET Core</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Web API</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">SQL Server</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">TestCafe</li>
+              </ul>
+            </article>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -left-8 top-1.5 h-4 w-4 rounded-full border-4 border-slate-300 bg-white sm:-left-10 sm:h-5 sm:w-5 dark:border-slate-600 dark:bg-navy-900" aria-hidden="true"></span>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:shadow-xl hover:shadow-blue-900/10 sm:p-8 dark:bg-navy-800 dark:ring-slate-700">
+              <header class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <div>
+                  <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">Intern</h3>
+                  <p class="font-medium text-royal dark:text-sky-400">TekEquipement</p>
+                </div>
+                <p class="text-sm font-medium text-slate-500 dark:text-slate-400"><time datetime="2017-06">June 2017</time> to <time datetime="2017-09">September 2017</time></p>
+              </header>
+              <p class="mt-4 text-slate-600 dark:text-slate-300">Built a web application that automates company creation, client and registered-office management, notifications, and the generation of contracts and client or company files in Excel, Word and PDF.</p>
+              <ul class="mt-4 space-y-2 text-slate-700 dark:text-slate-200">
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Identified the manual processes worth automating.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Defined roles and permissions for administrators, managers and clients.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Designed the technical architecture and the database.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Tracked registered offices, with automatic reminders for contract expiry and renewals.</li>
+              </ul>
+              <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">HTML</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Bootstrap</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">jQuery</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Symfony</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Git</li>
+              </ul>
+            </article>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -left-8 top-1.5 h-4 w-4 rounded-full border-4 border-slate-300 bg-white sm:-left-10 sm:h-5 sm:w-5 dark:border-slate-600 dark:bg-navy-900" aria-hidden="true"></span>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:shadow-xl hover:shadow-blue-900/10 sm:p-8 dark:bg-navy-800 dark:ring-slate-700">
+              <header class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <div>
+                  <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">Intern</h3>
+                  <p class="font-medium text-royal dark:text-sky-400">Office National des Chemins de Fer (ONCF)</p>
+                </div>
+                <p class="text-sm font-medium text-slate-500 dark:text-slate-400"><time datetime="2016-06">June 2016</time> to <time datetime="2016-08">August 2016</time></p>
+              </header>
+              <p class="mt-4 text-slate-600 dark:text-slate-300">Designed and developed a web application to automate how tenders and contracts are created and followed.</p>
+              <ul class="mt-4 space-y-2 text-slate-700 dark:text-slate-200">
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Simplified the creation and follow-up of calls for tender.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Made it easier to submit and evaluate bids.</li>
+                <li class="flex gap-3"><i class="fa-solid fa-check mt-1.5 text-xs text-royal dark:text-sky-400" aria-hidden="true"></i>Improved traceability and management of contracts.</li>
+              </ul>
+              <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">ASP.NET Framework</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Bootstrap</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">jQuery</li>
+                <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Git</li>
+              </ul>
+            </article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="scroll-mt-20 bg-white py-20 dark:bg-navy-900" aria-labelledby="skills-title">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 id="skills-title" class="font-display text-3xl font-bold text-navy-900 sm:text-4xl dark:text-white">Skills</h2>
+        <p class="mt-3 max-w-xl text-slate-600 dark:text-slate-300">Pick a category to see the detail.</p>
+
+        <div id="skillTabs" class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5" role="tablist" aria-label="Skill categories"></div>
+        <div id="skillPanel" class="mt-6 rounded-2xl bg-mist-50 p-6 ring-1 ring-sky-100 sm:p-8 dark:bg-navy-800 dark:ring-slate-700" role="tabpanel" tabindex="0"></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="scroll-mt-20 bg-mist-100/60 py-20 dark:bg-navy-800/40" aria-labelledby="projects-title">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 id="projects-title" class="font-display text-3xl font-bold text-navy-900 sm:text-4xl dark:text-white">Projects</h2>
+        <p class="mt-3 max-w-xl text-slate-600 dark:text-slate-300">Work from my career so far. Bank projects are internal, so they have no public links.</p>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="flex flex-col rounded-2xl bg-white p-7 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-royal to-sky-400 text-white"><i class="fa-solid fa-coins" aria-hidden="true"></i></span>
+              <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">STAR treasury platform</h3>
+            </div>
+            <p class="mt-4 flex-1 text-slate-600 dark:text-slate-300">Centralises transactions from X-One, Border, Cockpit and other sources, and shows treasurers their P&amp;L, CBS, Blotter and Sensitivity. I led several migrations from the heavy client to the web.</p>
+            <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">React</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Angular</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">.NET Core</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Oracle</li>
+            </ul>
+            <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+              <span class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-slate-400 dark:bg-navy-900 dark:text-slate-500" title="Internal to Société Générale"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live demo (internal)</span>
+              <span class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-slate-400 dark:bg-navy-900 dark:text-slate-500" title="Private repository"><i class="fa-brands fa-github" aria-hidden="true"></i> Code (private)</span>
+            </div>
+          </article>
+
+          <article class="flex flex-col rounded-2xl bg-white p-7 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-royal to-sky-400 text-white"><i class="fa-solid fa-calculator" aria-hidden="true"></i></span>
+              <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">Pricing and risk web app</h3>
+            </div>
+            <p class="mt-4 flex-1 text-slate-600 dark:text-slate-300">A REST API and web interface that gives quick access to price calculators and risk indicators built on quantitative models, backed by unit tests, TestCafe integration tests and regular refactoring.</p>
+            <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">React</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">TypeScript</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Web API</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">SQL Server</li>
+            </ul>
+            <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+              <span class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-slate-400 dark:bg-navy-900 dark:text-slate-500" title="Internal to Société Générale"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live demo (internal)</span>
+              <span class="inline-flex cursor-not-allowed items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-slate-400 dark:bg-navy-900 dark:text-slate-500" title="Private repository"><i class="fa-brands fa-github" aria-hidden="true"></i> Code (private)</span>
+            </div>
+          </article>
+
+          <article class="flex flex-col rounded-2xl bg-white p-7 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-royal to-sky-400 text-white"><i class="fa-solid fa-file-contract" aria-hidden="true"></i></span>
+              <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">Company registration manager</h3>
+            </div>
+            <p class="mt-4 flex-1 text-slate-600 dark:text-slate-300">Internship project for TekEquipement. It automates company and client creation, tracks registered offices with renewal reminders, and generates contracts and files in Excel, Word and PDF.</p>
+            <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Symfony</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Bootstrap</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">jQuery</li>
+            </ul>
+            <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+              <!-- Replace # with your real demo and repository URLs -->
+              <a href="#" class="inline-flex items-center gap-2 rounded-lg bg-royal px-4 py-2 text-white transition hover:bg-blue-700"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live demo</a>
+              <a href="#" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-royal ring-1 ring-royal transition hover:bg-royal hover:text-white dark:text-sky-400 dark:ring-sky-400 dark:hover:bg-sky-400 dark:hover:text-navy-900"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+            </div>
+          </article>
+
+          <article class="flex flex-col rounded-2xl bg-white p-7 shadow-sm ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <div class="flex items-center gap-3">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-royal to-sky-400 text-white"><i class="fa-solid fa-train" aria-hidden="true"></i></span>
+              <h3 class="font-display text-xl font-bold text-navy-900 dark:text-white">Tender management app</h3>
+            </div>
+            <p class="mt-4 flex-1 text-slate-600 dark:text-slate-300">Internship project for ONCF. It simplifies creating and tracking calls for tender, makes bid submission and evaluation easier, and improves traceability of contracts.</p>
+            <ul class="mt-5 flex flex-wrap gap-2 text-xs font-medium" aria-label="Technologies">
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">ASP.NET</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">Bootstrap</li>
+              <li class="rounded-md bg-mist-100 px-2.5 py-1 text-blue-800 dark:bg-navy-900 dark:text-sky-300">jQuery</li>
+            </ul>
+            <div class="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+              <!-- Replace # with your real demo and repository URLs -->
+              <a href="#" class="inline-flex items-center gap-2 rounded-lg bg-royal px-4 py-2 text-white transition hover:bg-blue-700"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live demo</a>
+              <a href="#" class="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-royal ring-1 ring-royal transition hover:bg-royal hover:text-white dark:text-sky-400 dark:ring-sky-400 dark:hover:bg-sky-400 dark:hover:text-navy-900"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="scroll-mt-20 bg-white py-20 dark:bg-navy-900" aria-labelledby="edu-title">
+      <div class="mx-auto max-w-6xl px-5">
+        <h2 id="edu-title" class="font-display text-3xl font-bold text-navy-900 sm:text-4xl dark:text-white">Education and certifications</h2>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          <article class="rounded-2xl bg-mist-50 p-7 ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <i class="fa-solid fa-graduation-cap text-2xl text-royal dark:text-sky-400" aria-hidden="true"></i>
+            <h3 class="mt-4 font-display text-lg font-bold text-navy-900 dark:text-white">Computer Engineering degree</h3>
+            <p class="mt-1 font-medium text-royal dark:text-sky-400">École Marocaine des Sciences de l'Ingénieur</p>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">2013 to 2018</p>
+          </article>
+
+          <article class="rounded-2xl bg-mist-50 p-7 ring-1 ring-sky-100 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-900/10 dark:bg-navy-800 dark:ring-slate-700">
+            <i class="fa-solid fa-comments text-2xl text-royal dark:text-sky-400" aria-hidden="true"></i>
+            <h3 class="mt-4 font-display text-lg font-bold text-navy-900 dark:text-white">Languages</h3>
+            <ul class="mt-3 space-y-2">
+              <li class="flex items-center justify-between"><span>French</span><span class="rounded-md bg-mist-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-navy-900 dark:text-sky-300">Fluent</span></li>
+              <li class="flex items-center justify-between"><span>English</span><span class="rounded-md bg-mist-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-navy-900 dark:text-sky-300">Fluent</span></li>
+            </ul>
+          </article>
+
+          <!-- Edit this card with your own certifications -->
+          <article class="rounded-2xl border-2 border-dashed border-sky-300 p-7 transition duration-300 hover:-translate-y-1 hover:border-royal dark:border-slate-600 dark:hover:border-sky-400">
+            <i class="fa-solid fa-certificate text-2xl text-royal dark:text-sky-400" aria-hidden="true"></i>
+            <h3 class="mt-4 font-display text-lg font-bold text-navy-900 dark:text-white">Certifications</h3>
+            <p class="mt-1 text-slate-600 dark:text-slate-300">Add your certifications in this block.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="scroll-mt-20 bg-gradient-to-b from-mist-100/70 to-mist-50 py-20 dark:from-navy-800/60 dark:to-navy-900" aria-labelledby="contact-title">
+      <div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-[1fr_1.2fr]">
+        <div>
+          <h2 id="contact-title" class="font-display text-3xl font-bold text-navy-900 sm:text-4xl dark:text-white">Get in touch</h2>
+          <p class="mt-4 max-w-md text-lg text-slate-600 dark:text-slate-300">Have a project or a role in mind? Send a message and I'll reply by email.</p>
+
+          <address class="mt-8 space-y-5 not-italic">
+            <a href="mailto:is.halimi@gmail.com" class="group flex items-center gap-4">
+              <span class="grid h-12 w-12 place-items-center rounded-xl bg-white text-royal shadow-sm ring-1 ring-sky-100 transition group-hover:bg-royal group-hover:text-white dark:bg-navy-800 dark:text-sky-400 dark:ring-slate-700 dark:group-hover:bg-sky-400 dark:group-hover:text-navy-900"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span>
+              <span><span class="block text-sm text-slate-500 dark:text-slate-400">Email</span><span class="font-semibold">is.halimi@gmail.com</span></span>
+            </a>
+            <a href="tel:+33638371569" class="group flex items-center gap-4">
+              <span class="grid h-12 w-12 place-items-center rounded-xl bg-white text-royal shadow-sm ring-1 ring-sky-100 transition group-hover:bg-royal group-hover:text-white dark:bg-navy-800 dark:text-sky-400 dark:ring-slate-700 dark:group-hover:bg-sky-400 dark:group-hover:text-navy-900"><i class="fa-solid fa-phone" aria-hidden="true"></i></span>
+              <span><span class="block text-sm text-slate-500 dark:text-slate-400">Phone</span><span class="font-semibold">06 38 37 15 69</span></span>
+            </a>
+            <div class="flex items-center gap-4">
+              <span class="grid h-12 w-12 place-items-center rounded-xl bg-white text-royal shadow-sm ring-1 ring-sky-100 dark:bg-navy-800 dark:text-sky-400 dark:ring-slate-700"><i class="fa-solid fa-location-dot" aria-hidden="true"></i></span>
+              <span><span class="block text-sm text-slate-500 dark:text-slate-400">Location</span><span class="font-semibold">Garches, 92380, France</span></span>
+            </div>
+          </address>
+        </div>
+
+        <form id="contactForm" class="rounded-2xl bg-white p-6 shadow-lg shadow-blue-900/5 ring-1 ring-sky-100 sm:p-8 dark:bg-navy-800 dark:ring-slate-700" novalidate>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="mb-1.5 block text-sm font-medium">Your name</label>
+              <input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-lg border border-sky-200 bg-mist-50 px-4 py-3 outline-none transition focus:border-royal focus:ring-2 focus:ring-blue-500/30 dark:border-slate-600 dark:bg-navy-900 dark:focus:border-sky-400">
+              <p class="mt-1 hidden text-sm text-rose-600 dark:text-rose-400" data-error-for="name">Enter your name.</p>
+            </div>
+            <div>
+              <label for="email" class="mb-1.5 block text-sm font-medium">Your email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-lg border border-sky-200 bg-mist-50 px-4 py-3 outline-none transition focus:border-royal focus:ring-2 focus:ring-blue-500/30 dark:border-slate-600 dark:bg-navy-900 dark:focus:border-sky-400">
+              <p class="mt-1 hidden text-sm text-rose-600 dark:text-rose-400" data-error-for="email">Enter a valid email address.</p>
+            </div>
+          </div>
+          <div class="mt-5">
+            <label for="subject" class="mb-1.5 block text-sm font-medium">Subject</label>
+            <input id="subject" name="subject" type="text" class="w-full rounded-lg border border-sky-200 bg-mist-50 px-4 py-3 outline-none transition focus:border-royal focus:ring-2 focus:ring-blue-500/30 dark:border-slate-600 dark:bg-navy-900 dark:focus:border-sky-400">
+          </div>
+          <div class="mt-5">
+            <label for="message" class="mb-1.5 block text-sm font-medium">Message</label>
+            <textarea id="message" name="message" rows="5" required class="w-full resize-y rounded-lg border border-sky-200 bg-mist-50 px-4 py-3 outline-none transition focus:border-royal focus:ring-2 focus:ring-blue-500/30 dark:border-slate-600 dark:bg-navy-900 dark:focus:border-sky-400"></textarea>
+            <p class="mt-1 hidden text-sm text-rose-600 dark:text-rose-400" data-error-for="message">Write a message.</p>
+          </div>
+          <button type="submit" class="mt-6 inline-flex items-center gap-2 rounded-xl bg-royal px-6 py-3 font-semibold text-white shadow-lg shadow-blue-600/25 transition hover:-translate-y-0.5 hover:bg-blue-700">
+            <i class="fa-regular fa-paper-plane" aria-hidden="true"></i> Send message
+          </button>
+          <p id="formStatus" class="mt-4 text-sm font-medium text-royal dark:text-sky-400" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-900 text-slate-300">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 px-5 py-8 text-sm sm:flex-row">
+      <p>&copy; <span id="year">2026</span> Ismail Halimi. All rights reserved.</p>
+      <nav aria-label="Footer navigation">
+        <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+          <li><a class="transition hover:text-sky-400" href="#about">About</a></li>
+          <li><a class="transition hover:text-sky-400" href="#experience">Experience</a></li>
+          <li><a class="transition hover:text-sky-400" href="#skills">Skills</a></li>
+          <li><a class="transition hover:text-sky-400" href="#projects">Projects</a></li>
+          <li><a class="transition hover:text-sky-400" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#top" class="inline-flex items-center gap-2 transition hover:text-sky-400"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Theme ---------- */
+    const themeIcon = document.getElementById('themeIcon');
+    const themeToggle = document.getElementById('themeToggle');
+
+    const applyTheme = (mode) => {
+      root.classList.toggle('dark', mode === 'dark');
+      themeIcon.innerHTML = mode === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+      themeToggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    const readStoredTheme = () => {
+      try { return localStorage.getItem('theme'); } catch (e) { return null; }
+    };
+    const storeTheme = (mode) => {
+      try { localStorage.setItem('theme', mode); } catch (e) { /* storage unavailable */ }
+    };
+
+    applyTheme(readStoredTheme() || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.classList.contains('dark') ? 'light' : 'dark';
+      applyTheme(next);
+      storeTheme(next);
+    });
+
+    /* ---------- Mobile menu ---------- */
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    const setMenu = (open) => {
+      mobileMenu.classList.toggle('hidden', !open);
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    menuToggle.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
+    mobileMenu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+    /* ---------- Scroll spy ---------- */
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          link.toggleAttribute('aria-current', false);
+          if (link.getAttribute('href') === `#${entry.target.id}`) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['about', 'experience', 'skills', 'projects', 'education', 'contact']
+      .forEach((id) => spy.observe(document.getElementById(id)));
+
+    /* ---------- Blotter ---------- */
+    const blotter = [
+      { book: 'Rates swaps', ccy: 'EUR', pnl: 412.6 },
+      { book: 'FX options', ccy: 'USD', pnl: 187.3 },
+      { book: 'Funding', ccy: 'GBP', pnl: -64.8 },
+      { book: 'Cash equities', ccy: 'JPY', pnl: 96.1 },
+      { book: 'Credit', ccy: 'EUR', pnl: -23.4 }
+    ];
+    const blotterBody = document.getElementById('blotterBody');
+    const blotterTotal = document.getElementById('blotterTotal');
+    const fmt = (n) => (n >= 0 ? '+' : '−') + Math.abs(n).toLocaleString('en-GB', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+    const renderBlotter = (direction = []) => {
+      blotterBody.innerHTML = blotter.map((row, i) => `
+        <tr>
+          <th scope="row" class="px-5 py-3 text-left font-medium text-white">${row.book}</th>
+          <td class="px-2 py-3 text-slate-400">${row.ccy}</td>
+          <td class="px-5 py-3 text-right font-semibold ${row.pnl >= 0 ? 'tick-up' : 'tick-down'}">
+            <i class="fa-solid ${direction[i] === 'down' ? 'fa-caret-down' : 'fa-caret-up'} mr-1 text-xs opacity-70" aria-hidden="true"></i>${fmt(row.pnl)}
+          </td>
+        </tr>`).join('');
+      const total = blotter.reduce((sum, row) => sum + row.pnl, 0);
+      blotterTotal.textContent = fmt(total);
+    };
+
+    renderBlotter();
+    if (!reduceMotion) {
+      setInterval(() => {
+        const dirs = blotter.map((row) => {
+          const delta = (Math.random() - 0.48) * 14;
+          row.pnl = Math.round((row.pnl + delta) * 10) / 10;
+          return delta >= 0 ? 'up' : 'down';
+        });
+        renderBlotter(dirs);
+      }, 1800);
+    }
+
+    /* ---------- Skills ---------- */
+    const skillGroups = [
+      { id: 'front', icon: 'fa-display', title: 'Front end', type: 'bars', items: [
+        ['React', 90], ['TypeScript', 90], ['JavaScript', 90], ['Angular', 75], ['HTML and CSS', 80]
+      ] },
+      { id: 'back', icon: 'fa-server', title: 'Back end', type: 'bars', items: [
+        ['C# and .NET Core', 92], ['Web API', 90], ['Node.js', 65], ['Java', 55], ['PowerShell', 60]
+      ] },
+      { id: 'data', icon: 'fa-database', title: 'Databases', type: 'bars', items: [
+        ['SQL Server', 85], ['Oracle', 78], ['MySQL', 70]
+      ] },
+      { id: 'tools', icon: 'fa-screwdriver-wrench', title: 'DevOps and tools', type: 'bars', items: [
+        ['Git and GitHub', 88], ['Jira', 85], ['CI/CD', 78], ['TeamCity', 70], ['Jenkins', 70]
+      ] },
+      { id: 'soft', icon: 'fa-people-group', title: 'Ways of working', type: 'tags', items: [
+        'Agile delivery', 'Unit testing', 'Integration testing with TestCafe', 'Code review', 'Refactoring',
+        'Technical documentation', 'Production support', 'Legacy-to-web migration', 'Test automation'
+      ] }
+    ];
+
+    const skillTabs = document.getElementById('skillTabs');
+    const skillPanel = document.getElementById('skillPanel');
+    let activeSkill = 'front';
+
+    const renderSkills = () => {
+      skillTabs.innerHTML = skillGroups.map((g) => `
+        <button type="button" role="tab" id="tab-${g.id}" aria-selected="${g.id === activeSkill}" aria-controls="skillPanel" data-skill="${g.id}"
+          class="group flex flex-col items-start gap-3 rounded-2xl p-5 text-left ring-1 transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-900/10
+          ${g.id === activeSkill ? 'bg-royal text-white ring-royal shadow-lg shadow-blue-600/25' : 'bg-white text-navy-900 ring-sky-100 dark:bg-navy-800 dark:text-white dark:ring-slate-700'}">
+          <i class="fa-solid ${g.icon} text-xl ${g.id === activeSkill ? 'text-white' : 'text-royal dark:text-sky-400'}" aria-hidden="true"></i>
+          <span class="font-display font-bold leading-tight">${g.title}</span>
+        </button>`).join('');
+
+      const group = skillGroups.find((g) => g.id === activeSkill);
+      skillPanel.setAttribute('aria-labelledby', `tab-${group.id}`);
+
+      if (group.type === 'bars') {
+        skillPanel.innerHTML = `<h3 class="sr-only">${group.title}</h3><ul class="grid gap-x-10 gap-y-6 md:grid-cols-2">` +
+          group.items.map(([name, level]) => `
+            <li>
+              <div class="mb-2 flex items-center justify-between font-medium"><span>${name}</span><span class="text-sm text-slate-500 dark:text-slate-400">${level}%</span></div>
+              <div class="h-2.5 overflow-hidden rounded-full bg-mist-100 dark:bg-navy-900" role="progressbar" aria-label="${name}" aria-valuenow="${level}" aria-valuemin="0" aria-valuemax="100">
+                <div class="bar-fill h-full rounded-full bg-gradient-to-r from-royal to-sky-400" data-level="${level}"></div>
+              </div>
+            </li>`).join('') + '</ul>';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          skillPanel.querySelectorAll('.bar-fill').forEach((bar) => { bar.style.width = `${bar.dataset.level}%`; });
+        }));
+      } else {
+        skillPanel.innerHTML = `<h3 class="sr-only">${group.title}</h3><ul class="flex flex-wrap gap-3">` +
+          group.items.map((item) => `<li class="rounded-full bg-white px-4 py-2 font-medium text-blue-800 ring-1 ring-sky-200 transition hover:bg-royal hover:text-white dark:bg-navy-900 dark:text-sky-300 dark:ring-slate-600 dark:hover:bg-sky-400 dark:hover:text-navy-900">${item}</li>`).join('') + '</ul>';
+      }
+    };
+
+    skillTabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-skill]');
+      if (!btn) return;
+      activeSkill = btn.dataset.skill;
+      renderSkills();
+      document.getElementById(`tab-${activeSkill}`).focus();
+    });
+    renderSkills();
+
+    /* ---------- Contact form (opens the visitor's email client) ---------- */
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const checks = {
+        name: data.name.trim().length > 0,
+        email: isEmail(data.email.trim()),
+        message: data.message.trim().length > 0
+      };
+      Object.entries(checks).forEach(([field, ok]) => {
+        form.querySelector(`[data-error-for="${field}"]`).classList.toggle('hidden', ok);
+        form.elements[field].setAttribute('aria-invalid', String(!ok));
+      });
+      if (!Object.values(checks).every(Boolean)) {
+        status.textContent = 'Fix the highlighted fields and send again.';
+        return;
+      }
+      const subject = data.subject.trim() || `Message from ${data.name.trim()}`;
+      const body = `${data.message.trim()}\n\nFrom: ${data.name.trim()} (${data.email.trim()})`;
+      window.location.href = `mailto:is.halimi@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      status.textContent = 'Your email app should open with the message ready to send.';
+      form.reset();
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
